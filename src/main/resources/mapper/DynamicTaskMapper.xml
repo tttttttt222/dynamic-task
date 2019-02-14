@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dynamic.task.dynamictask.dao.mapper.DynamicTaskDao">
+
+    <sql id="allColumn">
+        jobId,
+        createTime,
+        updateTime,
+        jobName,
+        jobGroup,
+        jobStatus,
+        cronExpression,
+        description,
+        beanClass,
+        isConcurrent,
+        springId,
+        methodName
+    </sql>
+
+
+    <select id="getAll" resultType="com.dynamic.task.dynamictask.dao.model.ScheduleJob">
+        SELECT
+        <include refid="allColumn"/>
+        FROM dynamicTask
+    </select>
+
+</mapper>
