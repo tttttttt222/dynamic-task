@@ -11,7 +11,7 @@ import org.apache.commons.lang3.StringUtils;
  * 项目名称:dynamic-task 描述: 创建人:ryw 创建时间:2019/2/14
  */
 @Slf4j
-public class TaskManager {
+public class NormalTaskProcess {
 
 	public static void invokMethod(ScheduleJob scheduleJob) {
 		Object object = null;

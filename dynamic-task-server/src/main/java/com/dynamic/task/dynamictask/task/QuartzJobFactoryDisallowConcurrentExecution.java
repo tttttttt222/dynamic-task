@@ -17,6 +17,6 @@ public class QuartzJobFactoryDisallowConcurrentExecution implements Job {
 	@Override
 	public void execute(JobExecutionContext context) throws JobExecutionException {
 		ScheduleJob scheduleJob = (ScheduleJob) context.getMergedJobDataMap().get("scheduleJob");
-		TaskManager.invokMethod(scheduleJob);
+		NormalTaskProcess.invokMethod(scheduleJob);
 	}
 }
