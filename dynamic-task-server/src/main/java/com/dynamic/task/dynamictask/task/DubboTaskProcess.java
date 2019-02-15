@@ -31,9 +31,14 @@ public class DubboTaskProcess {
 	private int defaultTimeOut = 30000;//30秒
 
 	public void invokMethod(ScheduleJob scheduleJob) {
-		ReferenceConfig<GenericService> genericReferenceConfig = createGenericReferenceConfig(scheduleJob);
-		genericReferenceConfig.get()
-				.$invoke(scheduleJob.getMethodName(), new String[]{}, new Object[]{});
+		try {
+			ReferenceConfig<GenericService> genericReferenceConfig = createGenericReferenceConfig(scheduleJob);
+			genericReferenceConfig.get()
+					.$invoke(scheduleJob.getMethodName(), new String[]{}, new Object[]{});
+		} catch (Exception e) {
+			log.error("rpc调用异常", e);
+		}
+
 	}
 
 
