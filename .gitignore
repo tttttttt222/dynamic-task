@@ -1,26 +1,7 @@
-/target/
-!.mvn/wrapper/maven-wrapper.jar
-
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
-
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-/build/
-/.mvn
+/.idea
+/dynamic-task-server/.idea
+/dynamic-task-server/target
+/dynamic-task-server/*.iml
+/dynamic-task-server/mvnw
+/dynamic-task-server/mvnw.cmd
+/dynamic-task-facade/*.iml
