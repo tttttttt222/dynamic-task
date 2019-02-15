@@ -1,0 +1,20 @@
+CREATE TABLE `dynamictask` (
+  `jobId` bigint(20) NOT NULL AUTO_INCREMENT,
+  `jobName` varchar(255) DEFAULT NULL,
+  `jobGroup` varchar(255) DEFAULT NULL,
+  `jobStatus` tinyint(4) DEFAULT '0',
+  `cronExpression` varchar(255) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `beanClass` varchar(255) DEFAULT NULL,
+  `isConcurrent` tinyint(4) DEFAULT '1',
+  `springId` varchar(60) DEFAULT NULL,
+  `methodName` varchar(255) DEFAULT NULL,
+  `createTime` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `updateTime` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `isDubbo` tinyint(4) DEFAULT '0',
+  PRIMARY KEY (`jobId`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+INSERT INTO `test`.`dynamictask` (`jobId`, `jobName`, `jobGroup`, `jobStatus`, `cronExpression`, `description`, `beanClass`, `isConcurrent`, `springId`, `methodName`, `createTime`, `updateTime`, `isDubbo`) VALUES ('1', 'testName', 'testGroup', '0', '0/1 * * * * ?', 'test', '', '0', 'taskTestServiceImpl', 'doTaskTest', '2019-02-15 16:05:50', '2019-02-15 16:05:50', '0');
+INSERT INTO `test`.`dynamictask` (`jobId`, `jobName`, `jobGroup`, `jobStatus`, `cronExpression`, `description`, `beanClass`, `isConcurrent`, `springId`, `methodName`, `createTime`, `updateTime`, `isDubbo`) VALUES ('2', 'testName2', 'testGroup2', '0', '0/1 * * * * ?', 'test', 'com.dynamic.task.dynamictask.service.impl.TaskTestServiceImpl', '0', NULL, 'doTaskTest', '2019-02-15 16:22:33', '2019-02-15 16:22:33', '0');
+INSERT INTO `test`.`dynamictask` (`jobId`, `jobName`, `jobGroup`, `jobStatus`, `cronExpression`, `description`, `beanClass`, `isConcurrent`, `springId`, `methodName`, `createTime`, `updateTime`, `isDubbo`) VALUES ('3', 'testName3', 'testGroup3', '1', '0/1 * * * * ?', 'test', 'com.dubbo.generic.test.service.TestService', '1', '', 'doQuartzTest', '2019-02-15 16:27:32', '2019-02-15 16:27:32', '1');
