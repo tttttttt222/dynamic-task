@@ -6,14 +6,16 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Component;
 
 /**
  * 项目名称:dynamic-task 描述: 创建人:ryw 创建时间:2019/2/14
  */
+@Component
 @Slf4j
 public class NormalTaskProcess {
 
-	public static void invokMethod(ScheduleJob scheduleJob) {
+	public  void invokMethod(ScheduleJob scheduleJob) {
 		Object object = null;
 		Class clazz = null;
 		//springId不为空先按springId查找bean

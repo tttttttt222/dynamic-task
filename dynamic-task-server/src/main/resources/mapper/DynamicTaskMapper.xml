@@ -14,7 +14,8 @@
         beanClass,
         isConcurrent,
         springId,
-        methodName
+        methodName,
+        isDubbo
     </sql>
 
 

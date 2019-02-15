@@ -1,5 +1,6 @@
 package com.dynamic.task.dynamictask.manager;
 
+import com.dynamic.task.dynamictask.common.utils.QuartzJobConstant;
 import com.dynamic.task.dynamictask.dao.mapper.DynamicTaskDao;
 import com.dynamic.task.dynamictask.dao.model.ScheduleJob;
 import com.dynamic.task.dynamictask.task.QuartzJobFactory;
@@ -164,6 +165,47 @@ public class QuartzManager {
 		trigger = trigger.getTriggerBuilder().withIdentity(triggerKey).withSchedule(scheduleBuilder).build();
 
 		scheduler.rescheduleJob(triggerKey, trigger);
+	}
+
+
+	/**
+	 * 获取任务状态
+	 */
+	public int getRunState(ScheduleJob scheduleJob) throws SchedulerException {
+		Scheduler scheduler = schedulerFactoryBean.getScheduler();
+		TriggerKey triggerKey = TriggerKey.triggerKey(scheduleJob.getJobName(), scheduleJob.getJobGroup());
+		String stateName = scheduler.getTriggerState(triggerKey).name();
+
+		/*
+		 * STATE_BLOCKED 	4  已锁
+		 * STATE_COMPLETE 	5  已完成
+		 * STATE_ERROR 	    3  错误
+		 * STATE_NONE 	    0  不存在
+		 * STATE_NORMAL 	1  正常
+		 * STATE_PAUSED 	2  暂停
+		 */
+		if (Trigger.TriggerState.NORMAL.name().equals(stateName)) {
+			return QuartzJobConstant.STATE_NORMAL;
+		}
+		if (Trigger.TriggerState.NONE.name().equals(stateName)) {
+			return QuartzJobConstant.STATE_NONE;
+		}
+		if (Trigger.TriggerState.PAUSED.name().equals(stateName)) {
+			return QuartzJobConstant.STATE_PAUSED;
+		}
+		if (Trigger.TriggerState.BLOCKED.name().equals(stateName)) {
+			return QuartzJobConstant.STATE_BLOCKED;
+		}
+
+		if (Trigger.TriggerState.COMPLETE.name().equals(stateName)) {
+			return QuartzJobConstant.STATE_COMPLETE;
+		}
+
+		if (Trigger.TriggerState.ERROR.name().equals(stateName)) {
+			return QuartzJobConstant.STATE_ERROR;
+		}
+
+		return QuartzJobConstant.STATE_NONE;
 	}
 
 

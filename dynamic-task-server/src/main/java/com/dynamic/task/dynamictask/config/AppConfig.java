@@ -44,7 +44,9 @@ public class AppConfig {
 
 	@Bean
 	public SchedulerFactoryBean schedulerFactoryBean(){
-         return new SchedulerFactoryBean();
+		SchedulerFactoryBean schedulerFactoryBean = new SchedulerFactoryBean();
+		schedulerFactoryBean.setStartupDelay(5);
+		return schedulerFactoryBean;
 	}
 
 }

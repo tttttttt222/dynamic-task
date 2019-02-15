@@ -1,5 +1,6 @@
-package com.dynamic.task.dynamictask.dao.model;
+package com.dynamic.task.facade.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,19 +12,12 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class ScheduleJob {
+public class QuartzScheduleJob implements Serializable {
 
-	public static final int STATUS_RUNNING = 1;
-	public static final int STATUS_NOT_RUNNING = 0;
-	public static final int CONCURRENT_IS = 1;
-	public static final int CONCURRENT_NOT = 0;
-	public static final int DUBBO_IS = 1;
-	public static final int DUBBO_NOT = 0;
+	private static final long serialVersionUID = 7117291304755917575L;
+
 	private Long jobId;
 
-	private Date createTime;
-
-	private Date updateTime;
 	/**
 	 * 任务名称
 	 */
@@ -60,7 +54,6 @@ public class ScheduleJob {
 	 * 任务调用的方法名
 	 */
 	private String methodName;
-
 	/**
 	 * 是否是dubbo调用接口
 	 */

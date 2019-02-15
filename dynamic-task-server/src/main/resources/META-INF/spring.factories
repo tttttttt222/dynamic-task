@@ -1,0 +1,6 @@
+org.springframework.context.ApplicationContextInitializer=\
+com.dynamic.task.dynamictask.config.dubbo.DubboConfigurationApplicationContextInitializer
+org.springframework.context.ApplicationListener=\
+com.dynamic.task.dynamictask.config.dubbo.DubboHolderListener
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.dynamic.task.dynamictask.config.dubbo.DubboProperties
