@@ -13,10 +13,10 @@ import lombok.ToString;
 @ToString
 public class ScheduleJob {
 
-	public static final String STATUS_RUNNING = "1";
-	public static final String STATUS_NOT_RUNNING = "0";
-	public static final String CONCURRENT_IS = "1";
-	public static final String CONCURRENT_NOT = "0";
+	public static final int STATUS_RUNNING = 1;
+	public static final int STATUS_NOT_RUNNING = 0;
+	public static final int CONCURRENT_IS = 1;
+	public static final int CONCURRENT_NOT = 0;
 	private Long jobId;
 
 	private Date createTime;
@@ -33,7 +33,7 @@ public class ScheduleJob {
 	/**
 	 * 任务状态 是否启动任务
 	 */
-	private String jobStatus;
+	private int jobStatus;
 	/**
 	 * cron表达式
 	 */
@@ -49,7 +49,7 @@ public class ScheduleJob {
 	/**
 	 * 任务是否有状态
 	 */
-	private String isConcurrent;
+	private int isConcurrent;
 	/**
 	 * spring bean
 	 */

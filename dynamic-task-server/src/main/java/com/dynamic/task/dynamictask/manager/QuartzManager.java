@@ -49,7 +49,7 @@ public class QuartzManager {
 
 
 	public void addJob(ScheduleJob job) {
-		if (job == null || !ScheduleJob.STATUS_RUNNING.equals(job.getJobStatus())) {
+		if (job == null || ScheduleJob.STATUS_RUNNING != job.getJobStatus()) {
 			return;
 		}
 		try {
@@ -60,7 +60,7 @@ public class QuartzManager {
 
 			// 不存在，创建一个
 			if (null == trigger) {
-				Class clazz = ScheduleJob.CONCURRENT_IS.equals(job.getIsConcurrent()) ? QuartzJobFactory.class
+				Class clazz = ScheduleJob.CONCURRENT_IS == job.getIsConcurrent() ? QuartzJobFactory.class
 						: QuartzJobFactoryDisallowConcurrentExecution.class;
 
 				JobDetail jobDetail = JobBuilder.newJob(clazz).withIdentity(job.getJobName(), job.getJobGroup())
@@ -106,7 +106,7 @@ public class QuartzManager {
 				job.setJobGroup(jobKey.getGroup());
 				job.setDescription("触发器:" + trigger.getKey());
 				Trigger.TriggerState triggerState = scheduler.getTriggerState(trigger.getKey());
-				job.setJobStatus(triggerState.name());
+				job.setJobStatus(Integer.parseInt(triggerState.name()));
 				if (trigger instanceof CronTrigger) {
 					CronTrigger cronTrigger = (CronTrigger) trigger;
 					String cronExpression = cronTrigger.getCronExpression();
@@ -121,9 +121,6 @@ public class QuartzManager {
 
 	/**
 	 * 暂停一个job
-	 *
-	 * @param scheduleJob
-	 * @throws SchedulerException
 	 */
 	public void pauseJob(ScheduleJob scheduleJob) throws SchedulerException {
 		Scheduler scheduler = schedulerFactoryBean.getScheduler();
@@ -134,9 +131,6 @@ public class QuartzManager {
 
 	/**
 	 * 恢复一个job
-	 *
-	 * @param scheduleJob
-	 * @throws SchedulerException
 	 */
 	public void resumeJob(ScheduleJob scheduleJob) throws SchedulerException {
 		Scheduler scheduler = schedulerFactoryBean.getScheduler();
@@ -147,9 +141,6 @@ public class QuartzManager {
 
 	/**
 	 * 立即执行job
-	 *
-	 * @param scheduleJob
-	 * @throws SchedulerException
 	 */
 	public void runAJobNow(ScheduleJob scheduleJob) throws SchedulerException {
 		Scheduler scheduler = schedulerFactoryBean.getScheduler();
@@ -160,9 +151,6 @@ public class QuartzManager {
 
 	/**
 	 * 更新job时间表达式
-	 *
-	 * @param scheduleJob
-	 * @throws SchedulerException
 	 */
 	public void updateJobCron(ScheduleJob scheduleJob) throws SchedulerException {
 		Scheduler scheduler = schedulerFactoryBean.getScheduler();
@@ -177,9 +165,6 @@ public class QuartzManager {
 
 		scheduler.rescheduleJob(triggerKey, trigger);
 	}
-
-
-
 
 
 }
