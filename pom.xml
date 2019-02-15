@@ -6,13 +6,11 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.1.2.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.dynamic.task</groupId>
     <artifactId>dynamic-task</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <modules>
-        <!--<module>ApiGateWayFacade</module>-->
         <module>dynamic-task-server</module>
         <module>dynamic-task-facade</module>
     </modules>
@@ -29,7 +27,8 @@
         <mysql-connector>5.1.35</mysql-connector>
         <commons-lang3.version>3.5</commons-lang3.version>
         <dynamic-task-facade.version>1.0.0</dynamic-task-facade.version>
-
+        <druid.version>1.1.0</druid.version>
+        <lombok.version>1.16.22</lombok.version>
     </properties>
 
 
@@ -41,47 +40,12 @@
                 <version>${dynamic-task-facade.version}</version>
             </dependency>
 
-            <dependency>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>1.16.22</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter</artifactId>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-test</artifactId>
-                <scope>test</scope>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-web</artifactId>
-            </dependency>
-
-            <!-- 热部署组件 -->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-devtools</artifactId>
-                <optional>true</optional>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-configuration-processor</artifactId>
-                <optional>true</optional>
-            </dependency>
-
 
             <!--db-->
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid</artifactId>
-                <version>1.1.0</version>
+                <version>${druid.version}</version>
             </dependency>
 
             <dependency>
@@ -96,11 +60,6 @@
                 <version>${mybatis-spring-boot}</version>
             </dependency>
 
-            <!--定时任务-->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-quartz</artifactId>
-            </dependency>
 
             <!--commons-lang-->
             <dependency>
@@ -111,6 +70,15 @@
 
         </dependencies>
     </dependencyManagement>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+        </dependency>
+    </dependencies>
 
     <build>
         <plugins>
