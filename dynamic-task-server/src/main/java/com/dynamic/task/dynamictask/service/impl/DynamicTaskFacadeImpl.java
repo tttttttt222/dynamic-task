@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * 项目名称:dynamic-task 描述: 创建人:ryw 创建时间:2019/2/15
  */
 @Service
+@org.springframework.stereotype.Service
 public class DynamicTaskFacadeImpl implements DynamicTaskFacade {
 
 	@Autowired

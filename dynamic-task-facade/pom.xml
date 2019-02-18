@@ -14,6 +14,10 @@
     <packaging>jar</packaging>
 
 
+    <name>dynamic-task-facade</name>
+    <url>http://maven.apache.org</url>
+
+
     <properties>
         <java.version>1.8</java.version>
     </properties>

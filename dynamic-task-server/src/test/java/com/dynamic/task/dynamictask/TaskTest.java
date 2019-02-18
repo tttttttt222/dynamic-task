@@ -1,7 +1,10 @@
 package com.dynamic.task.dynamictask;
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.dynamic.task.dynamictask.manager.QuartzManager;
 import com.dynamic.task.dynamictask.service.TaskTestService;
+import com.dynamic.task.facade.DynamicTaskFacade;
+import com.dynamic.task.facade.model.QuartzScheduleJob;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,15 +21,16 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class TaskTest {
 
 
-	@Autowired
-	private QuartzManager quartzManager;
-
-	@Autowired
-	private TaskTestService taskTestService;
+	@Reference
+	private DynamicTaskFacade dynamicTaskFacade;
 
 	@Test
 	public void beanTest() {
-
+		QuartzScheduleJob quartzScheduleJob = new QuartzScheduleJob();
+		quartzScheduleJob.setJobId(3L);
+		quartzScheduleJob.setJobName("testName3");
+		quartzScheduleJob.setJobGroup("testGroup3");
+		dynamicTaskFacade.runQuartzJobNow(quartzScheduleJob);
 	}
 
 
